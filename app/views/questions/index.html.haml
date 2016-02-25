@@ -1,0 +1,11 @@
+= link_to "שאל שאלה חדשה", new_question_path
+
+= form_for questions_path, method: :get do
+  = label_tag :keywords, "חיפוש:"
+  = text_field_tag :keywords
+  = submit_tag "חפש!"
+
+- if @questions
+  - @questions.each do |question|
+    %p
+      = link_to question.title, question

@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.where{content =~ my{params[:keywords]}}
+    @questions = Question.where{title =~ "%#{my{params[:keywords]}}%"} if params[:keywords]
   end
 
   def show
@@ -12,13 +12,14 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create!(question_params)
+    @question = Question.new(question_params)
+    return render :new if not @question.save
     redirect_to @question
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:content)
+    params.require(:question).permit(:title)
   end
 end

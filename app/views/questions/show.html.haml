@@ -1,0 +1,9 @@
+%h2= @question.title
+
+= render 'map'
+
+- @question.answers.each do |answer|
+  - if not answer.longitude?
+    %p= answer.content
+
+= link_to "ענה ללא מפה", new_answer_path(answer: { question_id: @question })

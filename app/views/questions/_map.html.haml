@@ -1,0 +1,5 @@
+- content_for :head do
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?language=he"
+  = javascript_include_tag "map"
+
+.map{data: { answers: @question.answers.to_a.select(&:latitude?).to_json, new_answer_path: new_answer_path(answer: { question_id: @question }) }}

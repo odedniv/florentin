@@ -1,0 +1,9 @@
+%h1= @answer.question.title
+
+= form_for @answer do |f|
+  = f.hidden_field :question_id
+  = f.hidden_field :latitude
+  = f.hidden_field :longitude
+  = f.label :content, "תשובתך:"
+  = f.text_field :content
+  = f.submit "שלח!"
